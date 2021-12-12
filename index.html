@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Frontend Mentor | Fylo landing page with two column layout</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap");
+
+      :root {
+        /* color mixer */
+        --mixer: hsl(228, 33%, 79%);
+
+        /* primary color */
+        --very-dark-blue: hsl(243, 87%, 12%);
+        --desat-blue: hsl(238, 22%, 44%);
+
+        /* Accent color */
+        --bright-blue: hsl(224, 93%, 58%);
+        --moderate-cyan: hsl(170, 45%, 43%);
+
+        /* Neutral color */
+        --light-gray-blue: hsl(240, 75%, 98%);
+        --light-gray: hsl(0, 0%, 75%);
+
+        /* font */
+        --open: "Open Sans", sans-serif;
+        --raleway: "Raleway", sans-serif;
+
+        /* font weight */
+        --fw-regu: 400;
+        --fw-bold: 700;
+
+        --border-radius: 0.25rem;
+      }
+
+      html {
+        font-size: 100%;
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-decoration: none;
+        box-sizing: inherit;
+        font-family: var(--open);
+      }
+
+      .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      section {
+        width: 100%;
+      }
+
+      .wrapper {
+        margin: auto;
+        padding-inline: 2.5rem;
+      }
+
+      .heading {
+        font-family: var(--open);
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      .name {
+        font-family: var(--raleway);
+      }
+
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+
+      .illustration {
+        padding-bottom: 2.5rem;
+      }
+
+      input {
+        border-radius: var(--border-radius);
+        border: 1px solid var(--very-dark-blue);
+      }
+
+      input[type="email"]::placeholder {
+        color: var(--light-gray);
+      }
+
+      .get_start-btn {
+        padding-block: 0.7rem;
+        background-color: var(--bright-blue);
+        border: none;
+        border-radius: var(--border-radius);
+        color: white;
+        font-family: var(--open);
+        font-weight: var(--fw-bold);
+        box-shadow: 3px 3px 5px hsl(0 0% 0%/0.2);
+      }
+
+      button {
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        filter: brightness(150%);
+      }
+
+      /*-----------------------    General setting end -------------------------------------------------------------------------- */
+
+      /*-----------------------     Header start -------------------------------------------------------------------------- */
+
+      .header-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 2rem 5rem;
+      }
+
+      .header .logo {
+        width: 25%;
+        max-width: 7.5rem;
+      }
+
+      .header .nav {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .header .nav a {
+        font-size: 0.8rem;
+        color: var(--very-dark-blue);
+      }
+
+      /*-----------------------     Intro section start -------------------------------------------------------------------------- */
+
+      .intro-sec {
+        text-align: center;
+        padding-bottom: 9rem;
+        background: no-repeat url("./images/bg-curve-mobile.svg") bottom
+          center/contain;
+      }
+
+      /* .intro-wrap {
+        padding-inline: 2.5rem;
+      } */
+
+      .intro-wrap .content {
+        color: var(--very-dark-blue);
+      }
+
+      .intro-wrap .heading {
+        font-size: 1.4rem;
+        font-weight: var(--fw-bold);
+        line-height: 1.5;
+        padding-bottom: 2rem;
+      }
+
+      .intro-wrap p {
+        padding-bottom: 2rem;
+      }
+
+      .intro-wrap form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .intro-wrap input {
+        padding: 0.5rem 1rem;
+      }
+
+      /*-----------------------     Comment section start -------------------------------------------------------------------------- */
+
+      .comment-sec {
+        text-align: center;
+        background-color: var(--light-gray-blue);
+      }
+
+      .comment-wrap {
+        padding: 2rem 2rem 4rem;
+      }
+
+      .comment-wrap .illustration {
+        padding-bottom: 6rem;
+      }
+
+      .comment-wrap .heading {
+        color: var(--very-dark-blue);
+        padding-bottom: 2rem;
+      }
+
+      .comment-wrap p {
+        text-align: left;
+        color: var(--desat-blue);
+        padding-bottom: 1.5rem;
+      }
+
+      .comment-wrap .button {
+        display: inline-block;
+        padding-bottom: 2rem;
+      }
+
+      .comment-wrap a {
+        display: flex;
+        place-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        color: var(--moderate-cyan);
+        padding-block: 0.5rem;
+        border-bottom: 1px solid var(--moderate-cyan);
+      }
+
+      .comment-wrap a img {
+        width: 1rem;
+      }
+
+      .comment-card {
+        text-align: left;
+        background-color: white;
+        padding: 1rem 2rem 1.5rem;
+        color: var(--very-dark-blue);
+        border-radius: var(--border-radius);
+        box-shadow: 0 0 10px hsl(0 0% 0%/0.1);
+      }
+
+      .comment-card .quote-img {
+        width: 5%;
+      }
+
+      .comment-card p {
+        color: var(--very-dark-blue);
+        padding-top: 0.7rem;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .comment-card .user {
+        display: flex;
+        align-items: center;
+      }
+
+      .comment-card .avatar-pic {
+        width: 12%;
+        margin-right: 0.5rem;
+      }
+
+      .comment-card img {
+        width: 100%;
+        border-radius: 50%;
+      }
+
+      .comment-card .user span {
+        display: block;
+      }
+
+      .name {
+        font-family: var(--raleway);
+        font-size: 10px;
+        font-weight: var(--fw-bold);
+      }
+
+      .info {
+        font-size: 5px;
+      }
+
+      /*-----------------------     Sign up section start -------------------------------------------------------------------------- */
+      .sign_up-sec {
+        background-color: var(--desat-blue);
+      }
+      .sign_up-wrap {
+        padding: 3rem 2rem;
+        color: white;
+        text-align: center;
+      }
+
+      .sign_up-sec h4,
+      .sign_up-sec p {
+        padding-bottom: 1.5rem;
+      }
+      .sign_up-sec h4 {
+        font-size: 1.2rem;
+        opacity: 0.8;
+      }
+
+      .sign_up-sec p {
+        font-size: 0.8rem;
+        line-height: 1.8;
+        opacity: 0.7;
+      }
+
+      .sign_up-sec form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-inline: 2rem;
+      }
+
+      .sign_up-sec input[type="email"] {
+        padding: 0.7rem;
+        font-size: 0.5rem;
+      }
+      .sign_up-sec input[type="email"]:focus {
+        outline: none;
+      }
+
+      /*-----------------------     footer section start -------------------------------------------------------------------------- */
+
+      .footer {
+        padding-block: 4rem;
+        background-color: var(--very-dark-blue);
+        color: white;
+      }
+
+      .footer a {
+        color: white;
+      }
+
+      .footer .logo {
+        width: 65%;
+      }
+
+      .footer .logo {
+        filter: brightness(0) invert(1);
+      }
+
+      .footer .col {
+        margin-top: 4rem;
+      }
+
+      .footer .col li + li {
+        margin-top: 1rem;
+      }
+
+      .contact div + div {
+        margin-top: 1rem;
+      }
+
+      .contact span {
+        margin-left: 0.7rem;
+      }
+
+      .social-group {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .social-group a {
+        width: 2rem;
+        aspect-ratio: 1;
+        border: 1px solid white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 2rem;
+      }
+
+      footer {
+        width: 100%;
+        background-color: var(--very-dark-blue);
+        color: hsl(255 100% 100%/0.5);
+      }
+
+      /*-----------------------     RWD footer start -------------------------------------------------------------------------- */
+
+      @media screen and (min-width: 376px) {
+        .wrapper {
+          display: flex;
+          padding-inline: 5rem;
+          max-width: 1400px;
+        }
+
+        .container {
+          padding-top: 2rem;
+        }
+
+        .header-wrap .logo {
+          max-width: 12rem;
+        }
+
+        .header-wrap .nav {
+          gap: 3rem;
+        }
+
+        .header-wrap .nav a {
+          font-size: 1.2rem;
+        }
+
+        .intro-sec {
+          background: no-repeat url("./images/bg-curve-desktop.svg") bottom
+            center/contain;
+        }
+
+        .intro-wrap {
+          padding-bottom: 4rem;
+        }
+
+        .intro-wrap,
+        .comment-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 5rem;
+        }
+
+        .intro-wrap .content,
+        .comment-wrap .content {
+          width: 50%;
+          text-align: left;
+        }
+
+        .intro-wrap .content h2,
+        .comment-wrap .content h4 {
+          font-size: 2.25rem;
+          padding-bottom: 1.5rem;
+        }
+
+        .intro-wrap .content p,
+        .comment-wrap .content p {
+          font-size: 1.2rem;
+          padding-bottom: 1.5rem;
+        }
+
+        .intro-wrap .content form {
+          flex-direction: row;
+        }
+
+        .intro-wrap .content input {
+          width: 50%;
+        }
+
+        .intro-wrap .content input:focus {
+          outline: none;
+        }
+
+        .intro-wrap .content button {
+          width: 30%;
+        }
+
+        .comment-wrap {
+          padding-block: 6rem;
+        }
+
+        .comment-wrap .button a {
+          font-size: 1.2rem;
+        }
+
+        .comment-wrap .button img {
+          width: 1.2rem;
+        }
+
+        .comment-wrap .comment-card {
+          width: 70%;
+        }
+
+        .comment-card p {
+          font-size: 0.8rem;
+        }
+
+        .sign_up-wrap {
+          justify-content: space-between;
+          padding-block: 6rem;
+        }
+
+        .sign_up-wrap .content {
+          width: 40%;
+          text-align: left;
+        }
+
+        .sign_up-wrap .content h4 {
+          font-size: 1.8rem;
+        }
+
+        .sign_up-wrap .content p {
+          font-size: 1.2rem;
+          margin-bottom: 0;
+        }
+
+        .sign_up-wrap form {
+          width: 40%;
+          gap: 1.2rem;
+        }
+
+        .sign_up-wrap form input[type="email"] {
+          padding: 1rem;
+        }
+
+        .sign_up-wrap button {
+          width: 60%;
+          max-width: 12.5rem;
+          padding: 1rem;
+        }
+
+        .wrapper .illustration {
+          width: 45%;
+          order: 2;
+        }
+
+        .footer-wrap {
+          padding: 6rem 5rem;
+        }
+
+        .footer .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .footer .logo {
+          width: 20%;
+          grid-column: 1/-1;
+        }
+
+        .footer .contact {
+          grid-column: 1/2;
+        }
+        .footer .about_us-nav {
+          grid-column: 2/3;
+          justify-self: center;
+        }
+        .footer .contact_us-nav {
+          grid-column: 3/4;
+          justify-self: center;
+        }
+        .footer .social-group {
+          grid-column: 4/5;
+          justify-self: center;
+          align-items: start;
+        }
+      }
+
+      /*-----------------------     Default footer start -------------------------------------------------------------------------- */
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="sr-only">Fylo landing page with two column layout</h1>
+
+      <section class="header">
+        <div class="header-wrap wrapper">
+          <div class="logo">
+            <a href="#"><img src="./images/logo.svg" alt="company logo" /></a>
+          </div>
+          <nav class="nav">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Sign In</a></li>
+          </nav>
+        </div>
+      </section>
+
+      <section class="intro-sec">
+        <div class="intro-wrap wrapper">
+          <div class="illustration">
+            <img src="./images/illustration-1.svg" alt="" />
+          </div>
+          <div class="content">
+            <h2 class="heading">
+              All your files in one secure location, accessible anywhere.
+            </h2>
+            <p>
+              Fylo stores your most important files in one secure location.
+              Access them wherever you need, share and collaborate with friends,
+              family, and co-workers.
+            </p>
+            <form action="#">
+              <input type="email" placeholder="Enter your email.." />
+              <button class="get_start-btn">Get Started</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="comment-sec">
+        <div class="comment-wrap wrapper">
+          <div class="illustration">
+            <img src="./images/illustration-2.svg" alt="" />
+          </div>
+          <div class="content">
+            <h4 class="heading">Stay productive, wherever you are</h4>
+            <p>
+              Never let location be an issue when accessing your files. Fylo has
+              you covered for all of your file storage needs.
+            </p>
+            <p>
+              Securely share files and folders with friends, family and
+              colleagues for live collaboration. No email attachments required!
+            </p>
+            <div class="button">
+              <a href="#"
+                >See how Fylo works
+                <img src="./images/icon-arrow.svg" alt="" />
+              </a>
+            </div>
+
+            <div class="comment-card">
+              <div class="quote-img">
+                <img src="./images/icon-quotes.svg" alt="" />
+              </div>
+              <p>
+                Fylo has improved our team productivity by an order of
+                magnitude. Since making the switch our team has become a
+                well-oiled collaboration machine.
+              </p>
+              <div class="user">
+                <div class="avatar-pic">
+                  <img src="./images/avatar-testimonial.jpg" alt="" />
+                </div>
+                <div class="info">
+                  <span class="name">Kyle Burton</span>
+                  <span class="title">Founder & CEO, Huddle</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sign_up-sec">
+        <div class="sign_up-wrap wrapper">
+          <div class="content">
+            <h4 class="heading">Get early access today</h4>
+            <p>
+              It only takes a minute to sign up and our free starter tier is
+              extremely generous. If you have any questions, our support team
+              would be happy to help you.
+            </p>
+          </div>
+          <form action="#">
+            <input type="email" placeholder="email@example.com" />
+            <button class="get_start-btn">Get Started For Free</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="footer">
+        <div class="footer-wrap wrapper grid">
+          <div class="logo">
+            <img src="./images/logo.svg" alt="" />
+          </div>
+          <div class="content">
+            <div class="contact col">
+              <div class="phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>Phone: +1-543-123-4567 </span>
+              </div>
+              <div class="email">
+                <i class="far fa-envelope"></i>
+                <span>example@fylo.com</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about_us-nav col">
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+
+          <div class="contact_us-nav col">
+            <ul>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+
+          <div class="social-group col">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Joe Jai</a>.
+      </p>
+    </footer>
+  </body>
+</html>
