@@ -55,6 +55,7 @@
       html {
         font-size: 100%;
         box-sizing: border-box;
+        scroll-behavior: smooth;
       }
 
       *,
@@ -66,6 +67,10 @@
         text-decoration: none;
         box-sizing: inherit;
         font-family: var(--open);
+      }
+
+      body {
+        position: relative;
       }
 
       .container {
@@ -114,6 +119,10 @@
         color: var(--light-gray);
       }
 
+      input[type="email"]:invalid {
+        border: 1px solid red;
+      }
+
       .get_start-btn {
         padding-block: 0.7rem;
         background-color: var(--bright-blue);
@@ -132,6 +141,24 @@
 
       button:hover {
         filter: brightness(150%);
+      }
+
+      .top {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        background-color: rgb(247, 247, 247);
+        width: 4rem;
+        aspect-ratio: 1;
+        font-size: 1.3rem;
+        text-align: center;
+        line-height: 4rem;
+        border-radius: 50%;
+        box-shadow: 0.2rem 0.2rem 1rem -0.2rem rgb(184, 184, 184);
+      }
+
+      .top a {
+        display: block;
       }
 
       /*-----------------------    General setting end -------------------------------------------------------------------------- */
@@ -169,10 +196,6 @@
           center/contain;
       }
 
-      /* .intro-wrap {
-        padding-inline: 2.5rem;
-      } */
-
       .intro-wrap .content {
         color: var(--very-dark-blue);
       }
@@ -192,12 +215,13 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        position: relative;
       }
 
       .intro-wrap input {
         padding: 0.5rem 1rem;
+        position: relative;
       }
-
       /*-----------------------     Comment section start -------------------------------------------------------------------------- */
 
       .comment-sec {
@@ -391,7 +415,13 @@
 
       /*-----------------------     RWD footer start -------------------------------------------------------------------------- */
 
-      @media screen and (min-width: 376px) {
+      @media screen and (min-width: 600px) {
+        .header .nav a {
+          font-size: 1rem;
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
         .wrapper {
           display: flex;
           padding-inline: 5rem;
@@ -451,6 +481,29 @@
 
         .intro-wrap .content form {
           flex-direction: row;
+          position: relative;
+        }
+
+        .intro-wrap .content .warning,
+        .sign_up-sec form .warning {
+          position: absolute;
+          left: 0;
+          font-size: 0.8rem;
+          opacity: 0;
+        }
+
+        .intro-wrap .content .warning {
+          bottom: -3rem;
+          color: red;
+        }
+
+        .sign_up-sec form .warning {
+          bottom: 10rem;
+        }
+
+        .intro-wrap .content input:invalid ~ .warning,
+        .sign_up-sec input:invalid ~ .warning {
+          opacity: 1;
         }
 
         .intro-wrap .content input {
@@ -467,6 +520,14 @@
 
         .comment-wrap {
           padding-block: 6rem;
+        }
+
+        .comment-wrap .button {
+          transition: 0.3s;
+        }
+
+        .comment-wrap .button:hover {
+          filter: brightness(1.2);
         }
 
         .comment-wrap .button a {
@@ -507,9 +568,12 @@
         .sign_up-wrap form {
           width: 40%;
           gap: 1.2rem;
+          position: relative;
+          padding-inline: 0;
         }
 
         .sign_up-wrap form input[type="email"] {
+          font-size: 0.85rem;
           padding: 1rem;
         }
 
@@ -517,6 +581,7 @@
           width: 60%;
           max-width: 12.5rem;
           padding: 1rem;
+          margin-top: 0.5rem;
         }
 
         .wrapper .illustration {
@@ -570,21 +635,25 @@
   <body>
     <main class="container">
       <h1 class="sr-only">Fylo landing page with two column layout</h1>
-
+      <div class="top">
+        <a href="#">
+          <i class="fas fa-chevron-up"></i>
+        </a>
+      </div>
       <section class="header">
         <div class="header-wrap wrapper">
           <div class="logo">
             <a href="#"><img src="./images/logo.svg" alt="company logo" /></a>
           </div>
           <nav class="nav">
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Sign In</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#sign_up">Sign In</a></li>
           </nav>
         </div>
       </section>
 
-      <section class="intro-sec">
+      <section class="intro-sec" id="features">
         <div class="intro-wrap wrapper">
           <div class="illustration">
             <img src="./images/illustration-1.svg" alt="" />
@@ -600,13 +669,15 @@
             </p>
             <form action="#">
               <input type="email" placeholder="Enter your email.." />
+
               <button class="get_start-btn">Get Started</button>
+              <p class="warning">Please check your email</p>
             </form>
           </div>
         </div>
       </section>
 
-      <section class="comment-sec">
+      <section class="comment-sec" id="team">
         <div class="comment-wrap wrapper">
           <div class="illustration">
             <img src="./images/illustration-2.svg" alt="" />
@@ -651,7 +722,7 @@
         </div>
       </section>
 
-      <section class="sign_up-sec">
+      <section class="sign_up-sec" id="sign_up">
         <div class="sign_up-wrap wrapper">
           <div class="content">
             <h4 class="heading">Get early access today</h4>
@@ -664,6 +735,7 @@
           <form action="#">
             <input type="email" placeholder="email@example.com" />
             <button class="get_start-btn">Get Started For Free</button>
+            <p class="warning">Please check your email</p>
           </form>
         </div>
       </section>
